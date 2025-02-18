@@ -1,0 +1,77 @@
+# Byte-compiled / optimized / DLL files
+**/__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+
+# Django-related
+db.sqlite3
+*.sqlite3
+*.log
+media/
+staticfiles/
+*.pot
+
+# Migrations (optional, if you don't want to track initial migrations)
+**/migrations/*.py
+**/migrations/*.pyc
+!**/migrations/__init__.py
+
+# Environment variables and secrets
+.env
+*.env
+config/settings_local.py  # If you have local settings
+
+# VSCode / PyCharm / JetBrains
+.vscode/
+.idea/
+*.iml
+
+# macOS / Windows system files
+.DS_Store
+Thumbs.db
+
+# Pip and package dependencies
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Node-related (if using frontend tools like React)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Compiled CSS (if using SASS/SCSS)
+*.sass-cache/
+*.scssc/
+*.map
+
+# Docker and deployment
+docker-compose.override.yml
+*.bak
+
+# Celery and Redis
+celerybeat-schedule
+celerybeat.pid
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Coverage reports
+htmlcov/
+.coverage
+*.cover
+nosetests.xml
+coverage.xml
+*.lcov
+
+# Logs and debugging files
+logs/
+*.log
+*.out
+*.err
+gunicorn.log
+supervisord.log
+supervisord.pid

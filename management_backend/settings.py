@@ -9,12 +9,13 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
+import os
 
+import environ
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -27,7 +28,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,17 +37,21 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "management_backend"
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
+    'django.contrib.sessions.middleware.SessionMiddleware',
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+# Cache-backed sessions
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 
 ROOT_URLCONF = "management_backend.urls"
 
@@ -69,7 +73,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "management_backend.wsgi.application"
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -79,7 +82,6 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -99,7 +101,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -111,7 +112,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
@@ -121,3 +121,17 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# region ENV VARIABLES
+env = environ.Env()
+# environ.Env.read_env()
+environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
+
+# ServiceM8 configs
+SERVICEM8_CLIENT_ID = env("SERVICEM8_CLIENT_ID")
+SERVICEM8_CLIENT_SECRET = env("SERVICEM8_CLIENT_SECRET")
+SERVICEM8_REDIRECT_URI = env("SERVICEM8_REDIRECT_URI")
+SERVICEM8_AUTH_URL = env("SERVICEM8_AUTH_URL")
+SERVICEM8_TOKEN_URL = env("SERVICEM8_TOKEN_URL")
+
+# endregion
