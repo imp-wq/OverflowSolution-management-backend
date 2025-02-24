@@ -26,7 +26,15 @@ SECRET_KEY = "django-insecure-svd4i$-=+y31l#4&p@%3*6xj8v+j3jxsh6n6lk*(r8j^*f1rb&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['8395-150-203-2-227.ngrok-free.app', 'localhost']
+
+CORS_ALLOW_ALL_ORIGINS = True
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:5173",
+#     "https://8395-150-203-2-227.ngrok-free.app",
+#     "https://go.servicem8.com"
+# ]
+CORS_ALLOW_CREDENTIALS = True
 
 # Application definition
 
@@ -37,10 +45,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "corsheaders",
     "management_backend"
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",

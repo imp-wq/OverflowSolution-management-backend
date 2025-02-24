@@ -8,5 +8,6 @@ auth_patterns = [
 
 urlpatterns = [
     path("oauth/", include(auth_patterns)),
-    path("auth-test/", views.get_servicem8_jobs),
+    path("get-all-jobs", views.get_servicem8_jobs),
+    path("webhook", views.servicem8_webhook, name='webhook')
 ]
